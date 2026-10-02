@@ -1,0 +1,1471 @@
+<!DOCTYPE html> <html lang="ru"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Артролайн — Sales Portal</title> <style>
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:Arial, sans-serif;
+background:#f5f7f8;
+color:#26343b;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:245px;
+height:100vh;
+background:white;
+border-right:1px solid #e5e9eb;
+padding:25px 15px;
+display:flex;
+flex-direction:column;
+z-index:10;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:11px;
+padding:0 8px 30px;
+}
+
+.logo img{
+width:48px;
+height:48px;
+object-fit:cover;
+border-radius:9px;
+}
+
+.logo h2{
+font-size:15px;
+color:#193a32;
+}
+
+.logo span{
+display:block;
+margin-top:3px;
+color:#899398;
+font-size:10px;
+}
+
+nav{
+display:flex;
+flex-direction:column;
+gap:5px;
+}
+
+nav a{
+text-decoration:none;
+color:#68757a;
+font-size:13px;
+padding:12px 14px;
+border-radius:8px;
+display:flex;
+align-items:center;
+gap:12px;
+transition:.2s;
+}
+
+nav a:hover,
+nav a.active{
+background:#eaf7f2;
+color:#087856;
+}
+
+.profile{
+margin-top:auto;
+border-top:1px solid #e7ebed;
+padding:15px 8px 5px;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.avatar{
+width:40px;
+height:40px;
+border-radius:50%;
+background:#15966d;
+color:white;
+display:grid;
+place-items:center;
+font-size:11px;
+font-weight:bold;
+}
+
+.profile b{
+display:block;
+font-size:11px;
+}
+
+.profile small{
+display:block;
+margin-top:3px;
+color:#899398;
+font-size:9px;
+}
+
+/* MAIN */
+
+main{
+margin-left:245px;
+}
+
+.header{
+height:76px;
+background:white;
+border-bottom:1px solid #e5e9eb;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 35px;
+}
+
+.page-label{
+color:#15966d;
+font-size:9px;
+font-weight:bold;
+letter-spacing:2px;
+}
+
+.header h3{
+margin-top:5px;
+font-size:16px;
+}
+
+.header-right{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.language{
+position:relative;
+}
+
+.language button{
+border:1px solid #dfe5e7;
+background:white;
+padding:8px 12px;
+border-radius:7px;
+cursor:pointer;
+}
+
+.languages{
+display:none;
+position:absolute;
+top:38px;
+right:0;
+width:100px;
+background:white;
+border:1px solid #e1e6e8;
+border-radius:8px;
+overflow:hidden;
+box-shadow:0 10px 30px #0001;
+z-index:20;
+}
+
+.language:hover .languages{
+display:block;
+}
+
+.languages a{
+display:block;
+padding:9px;
+color:#555;
+text-decoration:none;
+font-size:11px;
+}
+
+.languages a:hover{
+background:#edf8f4;
+}
+
+.notification{
+color:#77848a;
+font-size:20px;
+}
+
+/* CONTENT */
+
+.content{
+max-width:1250px;
+margin:auto;
+padding:35px;
+}
+
+/* WELCOME */
+
+.welcome{
+min-height:250px;
+background:linear-gradient(135deg,#087555,#20a879);
+color:white;
+border-radius:16px;
+padding:35px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+overflow:hidden;
+}
+
+.welcome span{
+font-size:10px;
+letter-spacing:2px;
+}
+
+.welcome h1{
+font-size:29px;
+margin:12px 0;
+}
+
+.welcome p{
+max-width:600px;
+line-height:1.6;
+font-size:13px;
+opacity:.92;
+}
+
+.primary{
+border:0;
+background:white;
+color:#087555;
+padding:12px 18px;
+margin-top:20px;
+border-radius:7px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.welcome-image{
+width:270px;
+height:180px;
+border-radius:14px;
+overflow:hidden;
+margin-left:20px;
+}
+
+.welcome-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:16px;
+margin:20px 0;
+}
+
+.stat{
+background:white;
+border:1px solid #e2e7e9;
+border-radius:12px;
+padding:20px;
+}
+
+.stat-icon{
+width:36px;
+height:36px;
+border-radius:8px;
+display:grid;
+place-items:center;
+margin-bottom:14px;
+}
+
+.green{
+background:#e1f6ed;
+color:#11936b;
+}
+
+.blue{
+background:#e8f1fd;
+color:#4381d1;
+}
+
+.purple{
+background:#eee8fb;
+color:#795fc0;
+}
+
+.orange{
+background:#fff0dc;
+color:#d18a34;
+}
+
+.stat span{
+display:block;
+color:#859095;
+font-size:10px;
+}
+
+.stat strong{
+display:block;
+margin-top:7px;
+font-size:21px;
+}
+
+.up{
+color:#15966d !important;
+margin-top:7px;
+}
+
+.progress{
+height:5px;
+background:#e8edef;
+border-radius:5px;
+margin-top:12px;
+}
+
+.progress i{
+display:block;
+height:100%;
+width:87%;
+background:#15966d;
+border-radius:5px;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:1.5fr 1fr;
+gap:20px;
+}
+
+.card{
+background:white;
+border:1px solid #e2e7e9;
+border-radius:12px;
+padding:22px;
+}
+
+.card-title{
+display:flex;
+justify-content:space-between;
+margin-bottom:18px;
+}
+
+.card-title h2{
+font-size:16px;
+}
+
+.card-title p{
+color:#899398;
+font-size:10px;
+margin-top:5px;
+}
+
+.card-title a{
+color:#15966d;
+text-decoration:none;
+font-size:11px;
+}
+
+/* PRODUCTS */
+
+.product{
+display:flex;
+align-items:center;
+gap:12px;
+padding:13px 0;
+border-bottom:1px solid #e8ecee;
+}
+
+.product:last-child{
+border-bottom:0;
+}
+
+.product-icon{
+width:50px;
+height:50px;
+overflow:hidden;
+border-radius:9px;
+flex-shrink:0;
+}
+
+.product-icon img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.product-info{
+flex:1;
+}
+
+.product-info b{
+display:block;
+font-size:12px;
+}
+
+.product-info span{
+display:block;
+color:#899398;
+font-size:9px;
+margin-top:4px;
+}
+
+.product strong{
+font-size:11px;
+}
+
+.product label,
+.medicine label{
+background:#e4f7ef;
+color:#12865f;
+padding:5px 7px;
+border-radius:5px;
+font-size:8px;
+}
+
+.warning{
+background:#fff0dc !important;
+color:#c47d20 !important;
+}
+
+/* ACTION */
+
+.action{
+width:100%;
+background:white;
+border:1px solid #e1e7e9;
+border-radius:8px;
+padding:13px;
+margin-bottom:10px;
+display:flex;
+align-items:center;
+gap:12px;
+text-align:left;
+cursor:pointer;
+}
+
+.action > span{
+color:#15966d;
+font-size:19px;
+}
+
+.action div{
+flex:1;
+}
+
+.action b{
+display:block;
+font-size:11px;
+}
+
+.action small{
+display:block;
+color:#8a959a;
+font-size:9px;
+margin-top:3px;
+}
+
+/* SECTION */
+
+.section-title{
+margin-bottom:25px;
+}
+
+.section-title span{
+color:#15966d;
+font-size:9px;
+letter-spacing:2px;
+font-weight:bold;
+}
+
+.section-title h1{
+font-size:28px;
+margin:7px 0;
+}
+
+.section-title p{
+color:#879298;
+font-size:12px;
+}
+
+/* CATALOG */
+
+.catalog{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.medicine{
+background:white;
+border:1px solid #e2e7e9;
+border-radius:12px;
+padding:18px;
+}
+
+.medicine-image{
+width:100%;
+height:190px;
+background:#f1f5f4;
+border-radius:9px;
+overflow:hidden;
+margin-bottom:15px;
+}
+
+.medicine-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.medicine h3{
+font-size:15px;
+margin-top:12px;
+}
+
+.medicine p{
+color:#899398;
+font-size:10px;
+line-height:1.5;
+margin:7px 0 15px;
+}
+
+.medicine strong{
+font-size:16px;
+}
+
+.medicine button{
+display:block;
+width:100%;
+border:0;
+background:#15966d;
+color:white;
+padding:10px;
+margin-top:15px;
+border-radius:7px;
+cursor:pointer;
+}
+
+/* SALES */
+
+.sales-card{
+background:white;
+border:1px solid #e2e7e9;
+border-radius:12px;
+padding:30px;
+}
+
+.sales-number span{
+color:#899398;
+font-size:11px;
+}
+
+.sales-number strong{
+display:block;
+font-size:28px;
+margin-top:7px;
+}
+
+.bars{
+height:220px;
+display:flex;
+align-items:end;
+gap:25px;
+margin-top:30px;
+}
+
+.bars i{
+flex:1;
+background:#15966d;
+border-radius:6px 6px 0 0;
+opacity:.85;
+}
+
+/* EMPLOYEES */
+
+.employees{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.employee{
+background:white;
+border:1px solid #e2e7e9;
+border-radius:12px;
+padding:25px;
+text-align:center;
+}
+
+.employee-avatar{
+width:60px;
+height:60px;
+border-radius:50%;
+display:grid;
+place-items:center;
+margin:auto;
+font-size:12px;
+font-weight:bold;
+}
+
+.employee h3{
+font-size:13px;
+margin-top:13px;
+}
+
+.employee p{
+color:#899398;
+font-size:10px;
+margin:6px 0;
+}
+
+.employee small{
+color:#15966d;
+font-size:9px;
+}
+
+/* NEWS */
+
+.news{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.news article{
+background:white;
+border:1px solid #e2e7e9;
+border-radius:12px;
+padding:25px;
+}
+
+.news article > span{
+color:#15966d;
+font-size:9px;
+}
+
+.news h3{
+font-size:15px;
+margin:12px 0;
+}
+
+.news p{
+color:#899398;
+font-size:11px;
+line-height:1.6;
+}
+
+.news a{
+display:inline-block;
+margin-top:15px;
+color:#15966d;
+font-size:10px;
+text-decoration:none;
+}
+
+/* SUPPORT */
+
+.support{
+background:white;
+border:1px solid #e2e7e9;
+border-radius:12px;
+padding:30px;
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.support-icon{
+width:60px;
+height:60px;
+border-radius:50%;
+background:#e8f7f2;
+color:#15966d;
+display:grid;
+place-items:center;
+font-size:25px;
+}
+
+.support p{
+color:#899398;
+font-size:11px;
+margin:8px 0;
+}
+
+.support b{
+display:block;
+color:#087555;
+font-size:11px;
+margin-top:5px;
+}
+
+/* MOBILE */
+
+@media(max-width:950px){
+
+.sidebar{
+    width:70px;
+    padding:20px 8px;
+}
+
+.logo{
+    justify-content:center;
+}
+
+.logo div:last-child{
+    display:none;
+}
+
+nav span{
+    display:none;
+}
+
+.profile div:last-child{
+    display:none;
+}
+
+.profile{
+    justify-content:center;
+}
+
+main{
+    margin-left:70px;
+}
+
+.stats{
+    grid-template-columns:1fr 1fr;
+}
+
+.grid{
+    grid-template-columns:1fr;
+}
+
+.catalog,
+.employees{
+    grid-template-columns:1fr 1fr;
+}
+
+}
+
+@media(max-width:650px){
+
+.header{
+    padding:0 15px;
+}
+
+.content{
+    padding:20px 15px;
+}
+
+.stats,
+.catalog,
+.employees,
+.news{
+    grid-template-columns:1fr;
+}
+
+.welcome-image{
+    display:none;
+}
+
+}
+
+</style> </head> <body> <!-- SIDEBAR --> <aside class="sidebar">
+<div class="logo">
+
+    <img
+        src="https://i.ibb.co.com/rKr2fSnJ/Whats-App-Image-2026-09-29-at-09-17-44-1.jpg"
+        alt="Артролайн"
+    >
+
+    <div>
+        <h2>АРТРОЛАЙН</h2>
+        <span>Sales Portal</span>
+    </div>
+
+</div>
+
+<nav>
+
+    <a href="#home" class="active">
+        ⌂ <span>Главная</span>
+    </a>
+
+    <a href="#catalog">
+        ▣ <span>Каталог</span>
+    </a>
+
+    <a href="#sales">
+        ↗ <span>Продажи</span>
+    </a>
+
+    <a href="#employees">
+        ♙ <span>Сотрудники</span>
+    </a>
+
+    <a href="#news">
+        ◈ <span>Новости</span>
+    </a>
+
+    <a href="#support">
+        ? <span>Поддержка</span>
+    </a>
+
+</nav>
+
+<div class="profile">
+
+    <div class="avatar">
+        ШК
+    </div>
+
+    <div>
+        <b>Шыңғыс К.</b>
+        <small>Менеджер продаж</small>
+    </div>
+
+</div>
+
+</aside> <main> <!-- HEADER --> <header class="header">
+<div>
+
+    <span class="page-label">
+        SALES DEPARTMENT
+    </span>
+
+    <h3>
+        Корпоративный портал
+    </h3>
+
+</div>
+
+<div class="header-right">
+
+    <div class="language">
+
+        <button>
+            RU ▾
+        </button>
+
+        <div class="languages">
+
+            <a href="#">
+                🇷🇺 RU
+            </a>
+
+            <a href="#">
+                🇰🇿 KZ
+            </a>
+
+            <a href="#">
+                🇬🇧 EN
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="notification">
+        ♢
+    </div>
+
+</div>
+
+</header> <!-- HOME --> <section id="home" class="content"> <div class="welcome">
+<div>
+
+    <span>
+        АРТРОЛАЙН
+    </span>
+
+    <h1>
+        Добро пожаловать, Шыңғыс!
+    </h1>
+
+    <p>
+        Рабочая панель отдела продаж.
+        Здесь вы можете управлять продажами,
+        просматривать каталог и новости компании.
+    </p>
+
+    <button class="primary">
+        + Новый заказ
+    </button>
+
+</div>
+
+<div class="welcome-image">
+
+    <img
+        src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=85"
+        alt="Медицинская компания"
+    >
+
+</div>
+
+</div> <!-- STATS --> <div class="stats"> <div class="stat">
+<div class="stat-icon green">
+    ↗
+</div>
+
+<span>
+    Продажи за месяц
+</span>
+
+<strong>
+    18.4 млн ₸
+</strong>
+
+<small class="up">
+    +12.8%
+</small>
+
+</div> <div class="stat">
+<div class="stat-icon blue">
+    ▣
+</div>
+
+<span>
+    Заказы
+</span>
+
+<strong>
+    486
+</strong>
+
+<small class="up">
+    +8.4%
+</small>
+
+</div> <div class="stat">
+<div class="stat-icon purple">
+    ◎
+</div>
+
+<span>
+    Клиенты
+</span>
+
+<strong>
+    128
+</strong>
+
+<small class="up">
+    +14 новых
+</small>
+
+</div> <div class="stat">
+<div class="stat-icon orange">
+    ★
+</div>
+
+<span>
+    План продаж
+</span>
+
+<strong>
+    87%
+</strong>
+
+<div class="progress">
+    <i></i>
+</div>
+
+</div> </div> <!-- CARDS --> <div class="grid"> <div class="card">
+<div class="card-title">
+
+    <div>
+
+        <h2>
+            Популярные продукты
+        </h2>
+
+        <p>
+            Топ продаж за текущий месяц
+        </p>
+
+    </div>
+
+    <a href="#catalog">
+        Все →
+    </a>
+
+</div>
+
+<div class="product">
+
+    <div class="product-icon">
+
+        <img
+            src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=150&q=80"
+            alt="ArthroFlex"
+        >
+
+    </div>
+
+    <div class="product-info">
+
+        <b>
+            ArthroFlex
+        </b>
+
+        <span>
+            Комплекс для суставов
+        </span>
+
+    </div>
+
+    <strong>
+        842 шт.
+    </strong>
+
+    <label>
+        В наличии
+    </label>
+
+</div>
+
+<div class="product">
+
+    <div class="product-icon">
+
+        <img
+            src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=150&q=80"
+            alt="CartiJoint"
+        >
+
+    </div>
+
+    <div class="product-info">
+
+        <b>
+            CartiJoint
+        </b>
+
+        <span>
+            Поддержка хрящевой ткани
+        </span>
+
+    </div>
+
+    <strong>
+        615 шт.
+    </strong>
+
+    <label>
+        В наличии
+    </label>
+
+</div>
+
+<div class="product">
+
+    <div class="product-icon">
+
+        <img
+            src="https://images.unsplash.com/photo-1550572017-edd951aa8ca1?auto=format&fit=crop&w=150&q=80"
+            alt="FlexiMove"
+        >
+
+    </div>
+
+    <div class="product-info">
+
+        <b>
+            FlexiMove
+        </b>
+
+        <span>
+            Поддержка суставов
+        </span>
+
+    </div>
+
+    <strong>
+        438 шт.
+    </strong>
+
+    <label class="warning">
+        Ограниченно
+    </label>
+
+</div>
+
+</div> <div class="card">
+<div class="card-title">
+
+    <div>
+
+        <h2>
+            Быстрые действия
+        </h2>
+
+        <p>
+            Основные операции
+        </p>
+
+    </div>
+
+</div>
+
+<button class="action">
+
+    <span>
+        ＋
+    </span>
+
+    <div>
+
+        <b>
+            Новый заказ
+        </b>
+
+        <small>
+            Создать заказ клиента
+        </small>
+
+    </div>
+
+    →
+
+</button>
+
+<button class="action">
+
+    <span>
+        ▣
+    </span>
+
+    <div>
+
+        <b>
+            Каталог
+        </b>
+
+        <small>
+            Посмотреть продукты
+        </small>
+
+    </div>
+
+    →
+
+</button>
+
+<button class="action">
+
+    <span>
+        ▥
+    </span>
+
+    <div>
+
+        <b>
+            Отчёт по продажам
+        </b>
+
+        <small>
+            Статистика отдела
+        </small>
+
+    </div>
+
+    →
+
+</button>
+
+</div> </div> </section> <!-- CATALOG --> <section id="catalog" class="content"> <div class="section-title">
+<span>
+    АРТРОЛАЙН
+</span>
+
+<h1>
+    Каталог
+</h1>
+
+<p>
+    Основная продукция компании
+</p>
+
+</div> <div class="catalog"> <!-- ARTHROFLEX --> <div class="medicine">
+<div class="medicine-image">
+
+    <img
+        src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=85"
+        alt="ArthroFlex"
+    >
+
+</div>
+
+<label>
+    В наличии
+</label>
+
+<h3>
+    ArthroFlex
+</h3>
+
+<p>
+    Комплекс для поддержки суставов
+</p>
+
+<strong>
+    8 900 ₸
+</strong>
+
+<button>
+    Подробнее
+</button>
+
+</div> <!-- CARTIJOINT --> <div class="medicine">
+<div class="medicine-image">
+
+    <img
+        src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=600&q=85"
+        alt="CartiJoint"
+    >
+
+</div>
+
+<label>
+    В наличии
+</label>
+
+<h3>
+    CartiJoint
+</h3>
+
+<p>
+    Поддержка хрящевой ткани
+</p>
+
+<strong>
+    7 950 ₸
+</strong>
+
+<button>
+    Подробнее
+</button>
+
+</div> <!-- FLEXIMOVE --> <div class="medicine">
+<div class="medicine-image">
+
+    <img
+        src="https://images.unsplash.com/photo-1550572017-edd951aa8ca1?auto=format&fit=crop&w=600&q=85"
+        alt="FlexiMove"
+    >
+
+</div>
+
+<label class="warning">
+    Ограниченно
+</label>
+
+<h3>
+    FlexiMove
+</h3>
+
+<p>
+    Поддержка подвижности суставов
+</p>
+
+<strong>
+    7 300 ₸
+</strong>
+
+<button>
+    Подробнее
+</button>
+
+</div> </div> </section> <!-- SALES --> <section id="sales" class="content"> <div class="section-title">
+<span>
+    АНАЛИТИКА
+</span>
+
+<h1>
+    Продажи
+</h1>
+
+<p>
+    Основные показатели отдела продаж
+</p>
+
+</div> <div class="sales-card">
+<div class="sales-number">
+
+    <span>
+        Продажи за месяц
+    </span>
+
+    <strong>
+        18.4 млн ₸
+    </strong>
+
+</div>
+
+<div class="bars">
+
+    <i style="height:45%"></i>
+    <i style="height:60%"></i>
+    <i style="height:52%"></i>
+    <i style="height:75%"></i>
+    <i style="height:68%"></i>
+    <i style="height:92%"></i>
+
+</div>
+
+</div> </section> <!-- EMPLOYEES --> <section id="employees" class="content"> <div class="section-title">
+<span>
+    КОМАНДА
+</span>
+
+<h1>
+    Сотрудники
+</h1>
+
+<p>
+    Отдел продаж Артролайн
+</p>
+
+</div> <div class="employees"> <div class="employee">
+<div class="employee-avatar green">
+    ШК
+</div>
+
+<h3>
+    Шыңғыс Кеңесұлы
+</h3>
+
+<p>
+    Менеджер продаж
+</p>
+
+<small>
+    shiko@artroline.kz
+</small>
+
+</div> <div class="employee">
+<div class="employee-avatar blue">
+    ДҚ
+</div>
+
+<h3>
+    Данияр Қайратұлы
+</h3>
+
+<p>
+    Менеджер продаж
+</p>
+
+<small>
+    daniyar@artroline.kz
+</small>
+
+</div> <div class="employee">
+<div class="employee-avatar purple">
+    РН
+</div>
+
+<h3>
+    Руслан Нұрланұлы
+</h3>
+
+<p>
+    Старший менеджер
+</p>
+
+<small>
+    ruslan@artroline.kz
+</small>
+
+</div> </div> </section> <!-- NEWS --> <section id="news" class="content"> <div class="section-title">
+<span>
+    ИНФОРМАЦИЯ
+</span>
+
+<h1>
+    Новости
+</h1>
+
+<p>
+    Новости компании
+</p>
+
+</div> <div class="news"> <article>
+<span>
+    28.09.2026
+</span>
+
+<h3>
+    Обновление каталога
+</h3>
+
+<p>
+    В каталог добавлены новые продукты
+    для поддержки суставов.
+</p>
+
+<a href="#">
+    Подробнее →
+</a>
+
+</article> <article>
+<span>
+    24.09.2026
+</span>
+
+<h3>
+    Новый план продаж
+</h3>
+
+<p>
+    Опубликованы показатели отдела
+    продаж на новый квартал.
+</p>
+
+<a href="#">
+    Подробнее →
+</a>
+
+</article> </div> </section> <!-- SUPPORT --> <section id="support" class="content"> <div class="section-title">
+<span>
+    ПОМОЩЬ
+</span>
+
+<h1>
+    Поддержка
+</h1>
+
+<p>
+    Служба поддержки сотрудников
+</p>
+
+</div> <div class="support">
+<div class="support-icon">
+    ?
+</div>
+
+<div>
+
+    <h2>
+        Нужна помощь?
+    </h2>
+
+    <p>
+        Обратитесь в службу поддержки
+        по вопросам работы портала.
+    </p>
+
+    <b>
+        support@artroline.kz
+    </b>
+
+    <b>
+        +7 (700) 235-06-08
+    </b>
+
+</div>
+</div> </section> </main> </body> </html>

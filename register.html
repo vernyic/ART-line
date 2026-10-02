@@ -1,0 +1,79 @@
+<!DOCTYPE html> <html lang="ru"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Регистрация — Артролайн</title> <link rel="stylesheet" href="style.css"> </head> <body> <aside class="sidebar">
+<div class="logo">
+    <div class="logo-icon">A</div>
+    <div>
+        <h2>АРТРОЛАЙН</h2>
+        <span>Sales Portal</span>
+    </div>
+</div>
+
+<nav>
+    <a href="index.html">⌂ <span>Главная</span></a>
+    <a href="index.html#catalog">▣ <span>Каталог</span></a>
+    <a href="index.html#sales">↗ <span>Продажи</span></a>
+    <a href="index.html#employees">♙ <span>Сотрудники</span></a>
+    <a href="index.html#news">◈ <span>Новости</span></a>
+    <a href="register.html" class="active">＋ <span>Регистрация</span></a>
+    <a href="index.html#support">? <span>Поддержка</span></a>
+</nav>
+
+</aside> <main> <header class="header"> <div> <span class="page-label">АРТРОЛАЙН</span> <h3>Регистрация сотрудника</h3> </div>
+<div class="language">
+    <button>RU ▾</button>
+    <div class="languages">
+        <a href="#">🇷🇺 RU</a>
+        <a href="#">🇰🇿 KZ</a>
+        <a href="#">🇬🇧 EN</a>
+    </div>
+</div>
+
+</header> <section class="register-page">
+<div class="register-card">
+
+    <div class="register-icon">A</div>
+
+    <h1>Создание аккаунта</h1>
+    <p>Заполните данные сотрудника</p>
+
+    <form>
+
+        <input type="text"
+               placeholder="Имя и фамилия"
+               required>
+
+        <input type="email"
+               placeholder="Корпоративная почта"
+               required>
+
+        <input type="tel"
+               placeholder="+7 (___) ___-__-__"
+               required>
+
+        <select required>
+            <option value="">Выберите должность</option>
+            <option>ОС</option>
+            <option>РОП</option>
+            <option>МОП</option>
+            <option>ЛОГ</option>
+            <option>Стажёр</option>
+        </select>
+
+        <input type="password"
+               placeholder="Пароль"
+               minlength="8"
+               required>
+
+        <label class="terms">
+            <input type="checkbox" required>
+            Я принимаю правила портала
+        </label>
+
+        <button type="submit">
+            Зарегистрироваться →
+        </button>
+
+    </form>
+
+</div>
+
+</section> </main> </body> </html>
